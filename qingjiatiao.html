@@ -13381,83 +13381,83 @@
 
 
 <script>
-        let open = true;
-        const idea = document.querySelector('.i_dea')
-        const btn = document.querySelector('.g_aprv_btns')
-        document.querySelector('.per_up_icon').addEventListener('click', (e) => {
-            if (open) {
-                open = false;
-                e.target.classList.add("cl_ose");
-                idea.style.display = 'none';
-            } else {
-                open = true;
-                e.target.classList.remove("cl_ose");
-                idea.style.display = 'block';
-            }
-        })
-
-
-        let open2 = true;
-        const idea2 = document.querySelector('.i_dea2')
-
-        document.querySelector('.i_con').addEventListener('click', (e) => {
-            if (open) {
-                open = false;
-                e.target.classList.add("cl_ose");
-                idea2.style.display = 'none';
-            } else {
-                open = true;
-                e.target.classList.remove("cl_ose");
-                idea2.style.display = 'block';
-            }
-        })
-
-        btn.addEventListener('click', () => {
-            window.confirm('确定要撤回审批吗?')
-        })
-
-        //获取页面元素以及时间定义变量
-        const date = new Date();
-        const begin = document.querySelector(".b_egin") //定义页面请假时间开始元素变量
-        const end = document.querySelector(".e_nd")     //定义页面请假时间结束元素变量
-        const time = document.querySelector(".d_ay")    //定义页面请假时长元素变量
-        const year = date.getFullYear();                //获取年份 
-        const month = date.getMonth() + 1;              //获取月份      
-        const day = date.getDate();                     //获取日期
-        const hours = date.getHours();                  //获取小时
-        const minutes = date.getMinutes();              //获取分钟
-
-        function n2s(n) {
-            return n.toString().padStart(2, '0')    //时间字符串函数
+    let open = true;
+    const idea = document.querySelector('.i_dea')
+    const btn = document.querySelector('.g_aprv_btns')
+    document.querySelector('.per_up_icon').addEventListener('click', (e) => {
+        if (open) {
+            open = false;
+            e.target.classList.add("cl_ose");
+            idea.style.display = 'none';
+        } else {
+            open = true;
+            e.target.classList.remove("cl_ose");
+            idea.style.display = 'block';
         }
-        // 替换请假开始and结束时间 2022-09-25 14:00
-        const bs = `${year}-${n2s(month)}-${n2s(day)} 06:00` //定义动态变化时间，请假开始时间为当前时间的前一小时
-        const es = `${year}-${n2s(month)}-${n2s(day)} 22:50` //
-        begin.innerHTML = bs; //替换请假开始日期
-        end.innerHTML = es;   //替换请假结束日期
+    })
 
-        const bD = new Date(bs).valueOf();
-        const eD = new Date(es).valueOf();
-        const diffTime = (eD - bD) / 1000 / 60 / 60 / 24;
-        // time.innerHTML = diffTime.toFixed(3);
-        time.innerHTML = "0.625" //固定请假时长
 
-        //定义替换变量
-        const c_reat1 = document.querySelector(".c_reat1")
-        const c_reat2 = document.querySelector(".c_reat2")
-        const a_pprove1 = document.querySelector(".a_pprove1")
-        const a_pprove2 = document.querySelector(".a_pprove2")
-        const a_pprove3 = document.querySelector(".a_pprove3")
+    let open2 = true;
+    const idea2 = document.querySelector('.i_dea2')
 
-        //请假流程时间
-        c_reat1.innerHTML = `${year}-${n2s(month)}-${n2s(day)} ${n2s(hours - 1)}:10`   //学生发起申请时间
-        a_pprove1.innerHTML = `${year}-${n2s(month)}-${n2s(day)} ${n2s(hours - 1)}:21`      //审批人同意时间
-        a_pprove2.innerHTML = `${year}-${n2s(month)}-${n2s(day)} ${n2s(hours - 1)}:21`      //素导同意时间
-        //数据日志时间
-        a_pprove3.innerHTML = `${year}-${n2s(month)}-${n2s(day)} ${n2s(hours - 1)}:21:11`   //素导处理数据时间
-        c_reat2.innerHTML = `${year}-${n2s(month)}-${n2s(day)} ${n2s(hours - 1)}:10:21`     //学生创建数据时间
-    </script>
+    document.querySelector('.i_con').addEventListener('click', (e) => {
+        if (open) {
+            open = false;
+            e.target.classList.add("cl_ose");
+            idea2.style.display = 'none';
+        } else {
+            open = true;
+            e.target.classList.remove("cl_ose");
+            idea2.style.display = 'block';
+        }
+    })
 
+    btn.addEventListener('click', () => {
+        window.confirm('确定要撤回审批吗?')
+    })
+
+    const date = new Date();
+    const begin = document.querySelector(".b_egin")
+    const end = document.querySelector(".e_nd")
+    const time = document.querySelector(".d_ay")
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+
+    function n2s(n) {
+        return n.toString().padStart(2, '0')
+    }
+
+    // 2022-09-25 14:00
+    const bs = `${year}-${n2s(month)}-${n2s(day)} ${n2s(hours - 1)}:00`
+    const es = `${year}-${n2s(month)}-${n2s(day)} ${21}:30`
+    begin.innerHTML = bs;
+    end.innerHTML = es;
+    const bD = new Date(bs).valueOf();
+    const eD = new Date(es).valueOf();
+    const diffTime = (eD - bD) / 1000 / 60 / 60 / 24;
+    // time.innerHTML = diffTime.toFixed(3);
+    time.innerHTML = "0.423"
+
+
+    const c_reat1 = document.querySelector(".c_reat1")
+    const c_reat2 = document.querySelector(".c_reat2")
+    const a_pprove1 = document.querySelector(".a_pprove1")
+    const a_pprove2 = document.querySelector(".a_pprove2")
+    const a_pprove3 = document.querySelector(".a_pprove3")
+
+    c_reat1.innerHTML = `${year}-${n2s(month)}-${n2s(n2s(day - 1))} ${14}:13`
+    c_reat2.innerHTML = `${year}-${n2s(month)}-${n2s(day - 1)} ${14}:13:21`
+    a_pprove1.innerHTML = `${year}-${n2s(month)}-${n2s(day - 1)} ${15}:42`
+    a_pprove2.innerHTML = `${year}-${n2s(month)}-${n2s(day - 1)} ${15}:42`
+    a_pprove3.innerHTML = `${year}-${n2s(month)}-${n2s(day - 1)} ${15}:42:11`
+
+
+
+
+</script>
     <audio controls="controls" style="display: none;"></audio><img src="https://stcs.chaoxing.com/api/stcs/log/add?deptid=170118&amp;uid=193473870&amp;type=1&amp;aid=27246&amp;page=%2Ffront%2Fthird%2Fapprove%2Fapps%2Fforms%2Ffore%2Fdetail%2Fapprove&amp;params=%7B%22formId%22%3A%2227246%22%2C%22pageEnc%22%3A%220d934b5b01da9955a21631c139a5ea14%22%2C%22id%22%3A%227085559%22%2C%22fidEnc%22%3A%229af49f98caedfb44%22%7D" width="0" height="0"><iframe class="NotificationReady" style="display:none;" src="jsbridge://NotificationReady"></iframe>
 
     <style type="text/css">
